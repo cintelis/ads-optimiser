@@ -1,0 +1,16 @@
+{
+  "name": "ads-optimiser",
+  "version": "1.0.0",
+  "description": "Ads Optimiser Authentication",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "google-ads-api": "^21.0.1",
+    "google-auth-library": "^9.2.0"
+  }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ads Optimiser - Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f5f7;
+            margin: 0;
+            padding: 20px;
+        }
+        .content-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #dfe1e6;
+        }
+        .dashboard-container {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dfe1e6;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .profile-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #0052cc; /* Blue */
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .user-profile span {
+            font-weight: 500;
+        }
+        .hidden {
+            display: none;
+        }
+        h1 { color: #172b4d; }
+        #signout-button {
+            background-color: #0052cc;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        #signout-button:hover {
+            background-color: #0065ff;
+        }
+        .button-primary {
+            background-color: #0052cc;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .button-primary:hover {
+            background-color: #0065ff;
+        }
+        select {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        .campaign-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .campaign-list li {
+            background-color: #fafbfc;
+            padding: 15px;
+            border: 1px solid #dfe1e6;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .breadcrumbs {
+            margin: 15px 0;
+            font-size: 14px;
+            color: #5e6c84;
+        }
+        .breadcrumb-item {
+            cursor: pointer;
+            color: #0052cc;
+        }
+        .breadcrumb-item:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb-separator {
+            margin: 0 8px;
+            color: #6b778c;
+        }
+        .breadcrumb-current {
+            font-weight: 600;
+            color: #172b4d;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #dfe1e6;
+            border-radius: 3px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        .pagination button {
+            padding: 8px 16px;
+            border: 1px solid #dfe1e6;
+            background-color: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .pagination button:disabled {
+            background-color: #f4f5f7;
+            color: #a5adba;
+            cursor: not-allowed;
+        }
+        .pagination span {
+            font-size: 14px;
+            color: #5e6c84;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <div class="user-profile">
+                <div id="profile-loader" class="spinner"></div>
+                <div id="profile-content" class="profile-content hidden">
+                    <img id="user-pic" alt="User profile picture" referrerpolicy="no-referrer">
+                    <span id="user-name"></span>
+                </div>
+            </div>
+            <div>
+                <button id="signout-button">Sign Out</button>
+            </div>
+        </div>
+        <h1>Dashboard</h1>
+        <p>Manage your Google Ads campaigns and analytics.</p>
+
+        <div class="content-section" id="ads-section">
+            <h2>Google Ads Campaigns</h2>
+            <div id="ads-loader" class="spinner"></div>
+            <div id="ads-content" class="hidden">
+                <!-- This content will be shown after loading -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Identity Services - needed for sign-out functionality -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="/dashboard.js"></script>
+</body>
+</html>

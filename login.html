@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ads Optimiser Pro | Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        /* Left side - Image Section */
+        .image-section {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        .image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .image-info {
+            position: relative;
+            padding: 2rem;
+            color: white;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .image-attribution {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .image-attribution a {
+            color: #4dabf7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .image-attribution a:hover {
+            color: #74c0fc;
+        }
+
+        /* Right side - Login Section */
+        .login-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: white;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2.5rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo h1 {
+            color: #1a1a2e;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .login-form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #0066cc;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(135deg, #0052a3 0%, #0088e6 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .form-footer a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .loading-indicator {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 1rem;
+        }
+
+        .feature-badge {
+            display: inline-block;
+            background: rgba(0, 102, 204, 0.1);
+            color: #0066cc;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+        }
+
+        .app-features {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .app-features h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .image-section {
+                min-height: 40vh;
+            }
+            
+            .login-section {
+                padding: 1.5rem;
+            }
+            
+            .login-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Side - Image Section -->
+    <section class="image-section">
+        <div class="image-container" id="unsplashImage">
+            <div class="image-overlay"></div>
+        </div>
+        <div class="image-info">
+            <h2>Ads Optimiser Pro</h2>
+            <p>Transform your marketing campaigns with AI-powered optimization</p>
+            <div class="image-attribution" id="imageAttribution">
+                Loading inspiring marketing image...
+            </div>
+        </div>
+    </section>
+
+    <!-- Right Side - Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <div class="logo">
+                <h1>Ads Optimiser</h1>
+                <p>Professional Campaign Management Platform</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="rememberMe" style="width: auto; margin-right: 0.5rem;">
+                        Remember me
+                    </label>
+                </div>
+                <div id="google-btn-container" style="width: 100%; display: flex; justify-content: center;"></div>
+            </form>
+
+            <div class="app-features">
+                <h3>Platform Features:</h3>
+                <span class="feature-badge">AI Campaign Optimisation</span>
+                <span class="feature-badge">ROI Analytics</span>
+                <span class="feature-badge">Multi-Channel Ads</span>
+                <span class="feature-badge">A/B Testing</span>
+                <span class="feature-badge">Real-time Reporting</span>
+            </div>
+
+            <div class="form-footer">
+                <p>New to Ads Optimiser? <a href="#">Create an account</a></p>
+                <p><a href="#">Forgot password?</a> • <a href="#" id="newImageBtn">Show different background</a></p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="/client-id.js"></script>
+    <script>
+        // Unsplash API Configuration
+        // Marketing and sales related search queries
+        const MARKETING_QUERIES = [
+            'digital marketing',
+            'ads campaign',
+            'customer journey',
+            'Google Ads',
+            'Conversion Rate'
+        ];
+
+        // DOM Elements
+        const unsplashImage = document.getElementById('unsplashImage');
+        const imageAttribution = document.getElementById('imageAttribution');
+        const newImageBtn = document.getElementById('newImageBtn');
+
+        // Get random query from array
+        function getRandomQuery() {
+            return MARKETING_QUERIES[Math.floor(Math.random() * MARKETING_QUERIES.length)];
+        }
+
+        // Fetch image from Unsplash
+        async function fetchUnsplashImage() {
+            const query = getRandomQuery();
+            const orientation = 'landscape';
+            const url = `/api/unsplash/random?query=${encodeURIComponent(query)}&orientation=${orientation}`;
+            
+            try {
+                showLoadingState();
+                
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Apply image as background
+                unsplashImage.style.backgroundImage = `url('${data.urls.regular}')`;
+                
+                // Update attribution (mandatory by Unsplash terms)
+                imageAttribution.innerHTML = `
+                    Photo by <a href="${data.user.links.html}?utm_source=Ads_Optimizer&utm_medium=referral" target="_blank">${data.user.name}</a> 
+                    on <a href="https://unsplash.com/?utm_source=Ads_Optimizer&utm_medium=referral" target="_blank">Unsplash</a>
+                    <br><small>Search: "${query}" • Image ID: ${data.id}</small>
+                `;
+                
+            } catch (error) {
+                console.error('Error fetching Unsplash image:', error);
+                
+                // Fallback to gradient background if API fails
+                unsplashImage.style.background = 'linear-gradient(135deg, #0066cc 0%, #0099ff 100%)';
+                imageAttribution.innerHTML = `
+                    <span style="color: #ff6b6b;">
+                        Unable to load image. Using fallback background.
+                        <br><small>Error: ${error.message}</small>
+                    </span>
+                `;
+            }
+        }
+
+        // Show loading state
+        function showLoadingState() {
+            imageAttribution.innerHTML = 'Loading marketing image...';
+            unsplashImage.style.opacity = '0.7';
+        }
+
+        // Handle Google Sign-In Response
+        async function handleCredentialResponse(response) {
+            const rememberMe = document.getElementById('rememberMe').checked;
+            try {
+                const res = await fetch('/api/auth/google', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        token: response.credential,
+                        rememberMe: rememberMe
+                    })
+                });
+                
+                if (res.ok) {
+                    window.location.href = '/dashboard';
+                } else {
+                    console.error('Google Sign-In failed');
+                }
+            } catch (error) {
+                console.error('Error during Google Sign-In:', error);
+            }
+        }
+
+        // Initialize Google Sign-In with retry mechanism
+        function initGoogleSignIn() {
+            if (window.google && window.GOOGLE_CLIENT_ID) {
+                google.accounts.id.initialize({
+                    client_id: window.GOOGLE_CLIENT_ID,
+                    callback: handleCredentialResponse
+                });
+                google.accounts.id.renderButton(
+                    document.getElementById("google-btn-container"),
+                    { theme: "filled_blue", size: "large", width: "320" }
+                );
+            } else {
+                setTimeout(initGoogleSignIn, 100);
+            }
+        }
+
+        // Initialize page
+        function init() {
+            // Load initial image
+            fetchUnsplashImage();
+            
+            // Set up event listeners
+            newImageBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                fetchUnsplashImage();
+            });
+            
+            // Load new image on page refresh (already happens in init)
+            // You can also add keyboard shortcut for new image
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'r') {
+                    e.preventDefault();
+                    fetchUnsplashImage();
+                }
+            });
+            
+            // Add a subtle hover effect to the image section
+            unsplashImage.addEventListener('mouseenter', () => {
+                unsplashImage.style.transform = 'scale(1.02)';
+            });
+            
+            unsplashImage.addEventListener('mouseleave', () => {
+                unsplashImage.style.transform = 'scale(1)';
+            });
+
+            // Start Google Sign-In initialization
+            initGoogleSignIn();
+        }
+
+        // Start the application
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
