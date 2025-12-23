@@ -38,8 +38,8 @@ The application uses a `.env` file to manage environment variables.
     GOOGLE_CLIENT_ID=your-google-client-id
     GOOGLE_CLIENT_SECRET=your-google-client-secret
     GOOGLE_ADS_DEVELOPER_TOKEN=your-google-ads-developer-token
-    SESSION_SECRET_ID=your-login-customer-id
-    UNSPLASH_ACCESS_KEY=your-refresh-token
+    SESSION_SECRET_ID=your-login-session-secret
+    UNSPLASH_ACCESS_KEY=your-unsplash-secret
     ```
 
     *Note: The SESSION_SECRET is used by the express-session middleware to sign the session ID cookie. This is a crucial security measure that helps protect user sessions from being hijacked. The secret is used to compute a hash of the session ID, which is then stored in the cookie. When a request comes back, the server re-computes the hash to ensure the session cookie has not been tampered with by an attacker. Without the secret, an attacker cannot create a valid session cookie.*
